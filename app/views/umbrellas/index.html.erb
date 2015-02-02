@@ -1,0 +1,29 @@
+<h1>Listing umbrellas</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Gps lat</th>
+      <th>Gps lon</th>
+      <th>Status</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @umbrellas.each do |umbrella| %>
+      <tr>
+        <td><%= umbrella.gps_lat %></td>
+        <td><%= umbrella.gps_lon %></td>
+        <td><%= umbrella.status %></td>
+        <td><%= link_to 'Show', umbrella %></td>
+        <td><%= link_to 'Edit', edit_umbrella_path(umbrella) %></td>
+        <td><%= link_to 'Destroy', umbrella, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Umbrella', new_umbrella_path %>

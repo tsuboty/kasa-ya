@@ -1,0 +1,29 @@
+<%= form_for(@umbrella) do |f| %>
+  <% if @umbrella.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@umbrella.errors.count, "error") %> prohibited this umbrella from being saved:</h2>
+
+      <ul>
+      <% @umbrella.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :gps_lat %><br>
+    <%= f.text_field :gps_lat %>
+  </div>
+  <div class="field">
+    <%= f.label :gps_lon %><br>
+    <%= f.text_field :gps_lon %>
+  </div>
+  <div class="field">
+    <%= f.label :status %><br>
+    <%= f.check_box :status %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

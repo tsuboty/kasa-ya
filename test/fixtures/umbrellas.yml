@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  gps_lat: 1.5
+  gps_lon: 1.5
+  status: false
+
+two:
+  gps_lat: 1.5
+  gps_lon: 1.5
+  status: false

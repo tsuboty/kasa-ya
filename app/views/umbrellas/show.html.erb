@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Gps lat:</strong>
+  <%= @umbrella.gps_lat %>
+</p>
+
+<p>
+  <strong>Gps lon:</strong>
+  <%= @umbrella.gps_lon %>
+</p>
+
+<p>
+  <strong>Status:</strong>
+  <%= @umbrella.status %>
+</p>
+
+<%= link_to 'Edit', edit_umbrella_path(@umbrella) %> |
+<%= link_to 'Back', umbrellas_path %>
