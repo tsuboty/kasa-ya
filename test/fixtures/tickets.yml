@@ -1,0 +1,13 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user_id: 
+  umbrella_id: 
+  gps_present_lat: 1.5
+  gps_present_lon: 1.5
+
+two:
+  user_id: 
+  umbrella_id: 
+  gps_present_lat: 1.5
+  gps_present_lon: 1.5

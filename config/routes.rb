@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :tickets
+
   resources :umbrellas
 
   resources :users

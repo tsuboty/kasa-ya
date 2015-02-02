@@ -11,7 +11,27 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202091804) do
+ActiveRecord::Schema.define(version: 20150202102430) do
+
+  create_table "tickets", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "umbrella_id"
+    t.float    "gps_present_lat"
+    t.float    "gps_present_lon"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "tickets", ["umbrella_id"], name: "index_tickets_on_umbrella_id"
+  add_index "tickets", ["user_id"], name: "index_tickets_on_user_id"
+
+  create_table "umbrellas", force: true do |t|
+    t.float    "gps_lat"
+    t.float    "gps_lon"
+    t.boolean  "status"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "name"
