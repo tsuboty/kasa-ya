@@ -11,7 +11,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150202102430) do
+ActiveRecord::Schema.define(version: 20150202103336) do
+
+  create_table "ratings", force: true do |t|
+    t.integer  "user_id"
+    t.integer  "rating"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "ratings", ["user_id"], name: "index_ratings_on_user_id"
 
   create_table "tickets", force: true do |t|
     t.integer  "user_id"
