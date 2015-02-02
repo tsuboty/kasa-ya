@@ -6,6 +6,7 @@
 <table class="table table-hover">
   <thead>
     <tr>
+      <th>Name</th>
       <th>Gps lat</th>
       <th>Gps lon</th>
       <th>Status</th>
@@ -16,6 +17,7 @@
   <tbody>
     <% @umbrellas.each do |umbrella| %>
       <tr>
+        <td><%= umbrella.name %></td>
         <td><%= umbrella.gps_lat %></td>
         <td><%= umbrella.gps_lon %></td>
         <td><%= umbrella.status %></td>

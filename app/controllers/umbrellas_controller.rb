@@ -69,6 +69,6 @@ class UmbrellasController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def umbrella_params
-      params.require(:umbrella).permit(:gps_lat, :gps_lon, :status)
+      params.require(:umbrella).permit(:name,:gps_lat, :gps_lon, :status)
     end
 end
