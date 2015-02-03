@@ -2,7 +2,7 @@ class SearchController < ApplicationController
 	def index
 		@umbrella = Umbrella.all
 
-		render json: @umbrella
+		#render json: @umbrella
 
 
 	end
