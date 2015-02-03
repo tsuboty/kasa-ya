@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
-  root 'main#index'
+  
+  root 'menu#index'
 
+  get "/admin" => 'main#index'
+  
   resources :ratings
 
   resources :tickets
