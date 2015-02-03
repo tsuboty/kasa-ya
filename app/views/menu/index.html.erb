@@ -6,11 +6,12 @@
 			<div class="container">
 				<div class="row">
 					<div class="col-md-12">
-
+						
 						<div class="col-md-3 feature-1 wp1 animated fadeInDown">
-							<div class="feature-icon animated pluse hvr-float-shadow space-bottom">
-								<i class="fa fa-search"></i>
-							</div>
+								<div class="feature-icon animated pluse hvr-float-shadow space-bottom" id="search">
+									<i class="fa fa-search"></i>
+								</div>
+							
 
 							<div class="feature-content">
 								<h1>探す</h1>
@@ -22,7 +23,7 @@
 						</div>
 
 						<div class="col-md-3 feature-2 wp1 delay-05s animated fadeInDown">
-							<div class="feature-icon hvr-float-shadow space-bottom">
+							<div class="feature-icon hvr-float-shadow space-bottom" id="rent">
 								<i class="fa fa-umbrella"></i>
 							</div>
 							<div class="feature-content">
@@ -35,7 +36,7 @@
 						</div>
 
 						<div class="col-md-3 feature-2 wp1 delay-1s animated fadeInDown">
-							<div class="feature-icon hvr-float-shadow space-bottom">
+							<div class="feature-icon hvr-float-shadow space-bottom" id="map">
 								<i class="fa fa-map-marker"></i>
 							</div>
 							<div class="feature-content">
@@ -48,7 +49,7 @@
 						</div>
 
 						<div class="col-md-3 feature-2 wp1 delay-15s animated fadeInDown">
-							<div class="feature-icon hvr-float-shadow space-bottom">
+							<div class="feature-icon hvr-float-shadow space-bottom" id="admin">
 								<i class="fa fa-desktop"></i>
 							</div>
 							<div class="feature-content">
@@ -63,3 +64,21 @@
 				</div>
 			</div>
 		</section>
+
+<script>
+	$(function() {
+		$("#search").click(function(){
+			location.href = '/search'
+		});
+		$("#rent").click(function(){
+			location.href = '/rent'
+		});
+		$("#map").click(function(){
+			location.href = '/map'
+		});
+		$("#admin").click(function(){
+			location.href = '/admin'
+		});
+	});
+</script>
+
