@@ -29,24 +29,7 @@ function initialize() {
   directionsDisplay.setMap(map);
 }
 
-function calcRoute() {
-  var plat = 0;
-  var plon = 0;
-  var start = new google.maps.LatLng(plat,plon );
-  var end = glatlng;
 
-    
-  var request = {
-    origin:start,
-    destination:end,
-    travelMode: google.maps.TravelMode.DRIVING
-  };
-  directionsService.route(request, function(result, status) {
-    if (status == google.maps.DirectionsStatus.OK) {
-      directionsDisplay.setDirections(result);
-    }
-  });
-}
 </script>
 
 
