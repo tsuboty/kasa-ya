@@ -10,6 +10,10 @@ class SearchController < ApplicationController
 		#新丸子
 		@p_lat = 35.580626
 		@p_lon = 139.661919 
+
+		#中原近くのコンビニ
+		@p_lat = 35.581101
+		@p_lon = 139.646444
 		
 		index = calc_min_distance(@p_lat,@p_lon)
 		#render json: index
@@ -29,7 +33,6 @@ class SearchController < ApplicationController
 		umbrella_gps.each do |u|
 			dx = p_lat - u[1]
 			dy = p_lon - u[2]
-
 			d = sqrt(dx * dx + dy * dy)
 			
 			if min_d == 0 
@@ -37,8 +40,7 @@ class SearchController < ApplicationController
 			else
 				if d < min_d
 					min_d = d
-					index = u[0]
-					
+					index = u[0]					
 				end
 			end	
 		end
