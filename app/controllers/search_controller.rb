@@ -4,16 +4,25 @@ class SearchController < ApplicationController
 		@umbrella = Umbrella.all.to_json
 
 		#川崎市立西中原中学校(現在地と仮定)
-		@p_lat = 35.578762
-		@p_lon = 139.643466
+		#@p_lat = 35.578762
+		#@p_lon = 139.643466
 
 		#新丸子
-		@p_lat = 35.580626
-		@p_lon = 139.661919 
+		#@p_lat = 35.580626
+		#@p_lon = 139.661919 
 
 		#中原近くのコンビニ
 		@p_lat = 35.581101
 		@p_lon = 139.646444
+
+		if lat = params[:lat]
+			@p_lat = lat
+		end
+		if lon = params[:lon]
+			@p_lon = lon
+		end
+
+
 		
 		index = calc_min_distance(@p_lat,@p_lon)
 		#render json: index
@@ -31,8 +40,8 @@ class SearchController < ApplicationController
 		min_d = 0
 		index = 0
 		umbrella_gps.each do |u|
-			dx = p_lat - u[1]
-			dy = p_lon - u[2]
+			dx = p_lat.to_f - u[1].to_f
+			dy = p_lon.to_f - u[2].to_f
 			d = sqrt(dx * dx + dy * dy)
 			
 			if min_d == 0 
