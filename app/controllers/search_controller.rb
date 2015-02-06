@@ -22,6 +22,7 @@ class SearchController < ApplicationController
 		@g_lon = goal.gps_lon
 
 		@umbrella_img = ActionController::Base.helpers.asset_path('umbrella_60.png')
+		@umbrella_close_img = ActionController::Base.helpers.asset_path('umbrella_close.png')
 		@current_img = ActionController::Base.helpers.asset_path('current_marker.png')
 	end
 

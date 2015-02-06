@@ -38,7 +38,13 @@
   function setUmbrella(umbrella){
     for (var i = 0; i < umbrella.length; i++) {
       var latLng = new google.maps.LatLng(umbrella[i].gps_lat,umbrella[i].gps_lon);
-      placeMarker(latLng,"<%= @umbrella_img %>");
+      console.log(umbrella[i].status);
+      if(umbrella[i].status){
+      	placeMarker(latLng,"<%= @umbrella_img %>");
+      }else{
+      	placeMarker(latLng,"<%= @umbrella_close_img %>");
+      }
+
     }
   }
 //マーカー１つをセット  
