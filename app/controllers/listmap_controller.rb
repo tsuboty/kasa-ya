@@ -1,0 +1,2 @@
+class ListmapController < ApplicationController
+end

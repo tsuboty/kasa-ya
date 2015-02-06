@@ -1,19 +1,15 @@
-<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCR3AaHzI1-N6CK-i11OeSTKH7ipkIzlzE&sensor=true"></script>
+
 
 <script type="text/javascript">
-
-  var directionsDisplay = new google.maps.DirectionsRenderer();
+  var directionsDisplay = new google.maps.DirectionsRenderer();;
   var directionsService = new google.maps.DirectionsService();
   var map;
   var p_latlng;
   var watchID=0;
-  var route;
-
   function initialize() {
     
     //現在地
    // geoLocate(); // MAPの初期位置(js取得の場合)
-
     //武蔵中原(武蔵中原)
     p_latlng = new google.maps.LatLng(<%=@p_lat%>,<%=@p_lon %>);
     g_latlng = new google.maps.LatLng(<%=@g_lat%>,<%=@g_lon %>);
@@ -23,32 +19,21 @@
       center: p_latlng,
       mapTypeId: google.maps.MapTypeId.ROADMAP
     };
-
     //マップ出力
     map = new google.maps.Map(document.getElementById('map_canvas'), myOptions);
-
     //傘の位置（json）
     var umbrella = <%= raw @umbrella %>;
     //すべての傘設置
     setUmbrella(umbrella);
-
     //現在地マーカー
     placeMarker(p_latlng,"<%= @current_img %>")
         
     //経路オブジェクト
     directionsDisplay.setMap(map);
     calcRoute(p_latlng,g_latlng);
-
-    var trafficLayer = new google.maps.TrafficLayer();
-    //trafficLayer.setMap(map);
-    
     
     
   }
-
-
-
-
 //すべての傘をセット
   function setUmbrella(umbrella){
     for (var i = 0; i < umbrella.length; i++) {
@@ -56,7 +41,6 @@
       placeMarker(latLng,"<%= @umbrella_img %>");
     }
   }
-
 //マーカー１つをセット  
   function placeMarker(location,img) {   
     var marker = new google.maps.Marker({
@@ -67,11 +51,8 @@
     }); 
     //map.setCenter(location);
   }
-
-
  //経路検索
  function calcRoute(start,end) {
-  var r;
   var request = {
     origin:start,
     destination:end,
@@ -82,7 +63,6 @@
     avoidTolls: true, //trueで有料道路を使用しない
     provideRouteAlternatives: true
   };
-
   directionsService.route(request, function(result, status) {
     if (status == google.maps.DirectionsStatus.OK) {
       directionsDisplay.setDirections(result);
@@ -91,9 +71,6 @@
   });
 }
 
-$("#d").click(function(){
-  console.log(route);
-});
 
 function setDistance(result){
   var distance = window.JSON.stringify(result["routes"][0]["legs"][0]["distance"]);

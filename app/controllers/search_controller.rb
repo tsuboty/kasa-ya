@@ -1,15 +1,8 @@
 include Math
+
 class SearchController < ApplicationController
 	def index
 		@umbrella = Umbrella.all.to_json
-
-		#川崎市立西中原中学校(現在地と仮定)
-		#@p_lat = 35.578762
-		#@p_lon = 139.643466
-
-		#新丸子
-		#@p_lat = 35.580626
-		#@p_lon = 139.661919 
 
 		#中原近くのコンビニ
 		@p_lat = 35.581101
@@ -22,14 +15,11 @@ class SearchController < ApplicationController
 			@p_lon = lon
 		end
 
-
-		
 		index = calc_min_distance(@p_lat,@p_lon)
-		#render json: index
+
 		goal = Umbrella.find(index)
 		@g_lat = goal.gps_lat
 		@g_lon = goal.gps_lon
-
 
 		@umbrella_img = ActionController::Base.helpers.asset_path('umbrella_60.png')
 		@current_img = ActionController::Base.helpers.asset_path('current_marker.png')
@@ -56,11 +46,53 @@ class SearchController < ApplicationController
 		return index
 	end
 
+	def json
+  		@lat = params[:lat]
+  		@lon = params[:lon]
+  		index = calc_min_distance(@lat,@lon) 		
+  		goal = Umbrella.find(index)
+  		@g_lat = goal.gps_lat
+		@g_lon = goal.gps_lon
+
+  	end
+
+  	def geo
+  		distance = params[:distance]
+  		duration = params[:duration]
+  		info ={}
+  		info["distance"] = distance
+  		info["duration"] = duration
+
+  		render json: info
+  	end
+
+
+    def polling
+    	lat = params[:lat]
+    	lon = params[:lon]
+
+    	index = calc_min_distance(lat,lon)
+    	umbrella = Umbrella.find(index)
+    	
+    	Geocoder.configure(:language  => :ja,	:units => :km )
+
+    	#t1 = Geocoder.search("東京タワー")[0].geometry['location'].values.join(',')
+		#t2 = Geocoder.search("東京スカイツリー")[0].geometry['location'].values.join(',')
+
+		t1 = lat.to_s + "," + lon.to_s
+		t2 = umbrella.gps_lat.to_s + "," + umbrella.gps_lon.to_s
+    	d = Geocoder::Calculations.distance_between(t1,t2) #km
+
+    	render json: d
+    end
+
+=begin
 	def distance(p)
 	    dx = @x - p.x
 	    dy = @y - p.y
 	    sqrt(dx * dx + dy * dy)
   	end
+=end
 
 
 

@@ -11,10 +11,16 @@ Rails.application.routes.draw do
   resources :umbrellas
 
   resources :users
-
   
-  #get "/search" => "search#index"
+  
   get '/search/(:lat)/(:lon)', to: "search#index" , lat: /[^\/]+/ , lon: /[^\/]+/
+
+  get "/search/:lat/:lon/json", to: 'search#json' , lat: /[^\/]+/ , lon: /[^\/]+/
+  #近くの傘への距離と歩行時間を返す
+  get "/search/geo/:distance/:duration" => 'search#geo'
+
+  get "/polling/:lat/:lon/",  to: 'search#polling' , lat: /[^\/]+/ , lon: /[^\/]+/
+
 
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
