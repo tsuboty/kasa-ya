@@ -5,7 +5,7 @@
 var directionsService;
 var directionsDisplay;
 
- function setmap(p_lat,p_lon,g_lat,g_lon) {
+function setmap(p_lat,p_lon,g_lat,g_lon) {
 
   directionsDisplay = new google.maps.DirectionsRenderer();
   directionsService = new google.maps.DirectionsService();
@@ -29,11 +29,13 @@ var directionsDisplay;
     directionsDisplay.setMap(map);
     sendRoute(p_latlng,g_latlng);
 
+
+
     
-  }
+}
 
  //経路検索
- function sendRoute(start,end) {
+function sendRoute(start,end) {
   var r;
   var request = {
     origin:start,
@@ -59,7 +61,15 @@ var directionsDisplay;
       //setDistance(result);
     }
   });
- }
+}
+
+function setInfoWindow(map,marker,comment){
+  var infowindow = new google.maps.InfoWindow({
+    /* 情報ウィンドウのオプション設定 */
+    content: comment
+  });
+   infowindow.open(map,marker);
+}
 
 
 

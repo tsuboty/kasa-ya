@@ -15,7 +15,7 @@ class SearchController < ApplicationController
 			@p_lon = lon
 		end
 
-		index = calc_min_distance(@p_lat,@p_lon)
+		index = calc_min_distance_close(@p_lat,@p_lon)
 
 		goal = Umbrella.find(index)
 		@g_lat = goal.gps_lat
@@ -26,8 +26,8 @@ class SearchController < ApplicationController
 		@current_img = ActionController::Base.helpers.asset_path('current_marker.png')
 	end
 
-	def calc_min_distance(p_lat,p_lon)
-		umbrella_gps = Umbrella.pluck(:id,:gps_lat,:gps_lon)
+	def calc_min_distance_close(p_lat,p_lon)
+		umbrella_gps = Umbrella.where(status: false).pluck(:id,:gps_lat,:gps_lon)
 		min_d = 0
 		index = 0
 		umbrella_gps.each do |u|
@@ -50,7 +50,7 @@ class SearchController < ApplicationController
 	def json
   		@lat = params[:lat]
   		@lon = params[:lon]
-  		index = calc_min_distance(@lat,@lon) 		
+  		index = calc_min_distance_close(@lat,@lon) 		
   		goal = Umbrella.find(index)
   		@g_lat = goal.gps_lat
 		@g_lon = goal.gps_lon
@@ -72,7 +72,7 @@ class SearchController < ApplicationController
     	lat = params[:lat]
     	lon = params[:lon]
 
-    	index = calc_min_distance(lat,lon)
+    	index = calc_min_distance_close(lat,lon)
     	umbrella = Umbrella.find(index)
     	
     	Geocoder.configure(:language  => :ja,	:units => :km )

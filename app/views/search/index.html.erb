@@ -6,6 +6,7 @@
   var map;
   var p_latlng;
   var watchID=0;
+  var start_mark;
   function initialize() {
     
     //現在地
@@ -26,7 +27,7 @@
     //すべての傘設置
     setUmbrella(umbrella);
     //現在地マーカー
-    placeMarker(p_latlng,"<%= @current_img %>")
+    start_mark = placeMarker(p_latlng,"<%= @current_img %>")
         
     //経路オブジェクト
     directionsDisplay.setMap(map);
@@ -56,6 +57,7 @@
         icon: img
     }); 
     //map.setCenter(location);
+    return marker;
   }
  //経路検索
  function calcRoute(start,end) {
@@ -83,7 +85,10 @@ function setDistance(result){
   var duration = window.JSON.stringify(result["routes"][0]["legs"][0]["duration"]);
   console.log(result);
   $("#distance").text(distance);
-  $("#duration").text(duration);  
+  $("#duration").text(duration);
+  var leftM = window.JSON.stringify(result["routes"][0]["legs"][0]["distance"]["value"]);
+  console.log(leftM);
+  setInfoWindow(map,start_mark,leftM);
 }
 
 </script>
